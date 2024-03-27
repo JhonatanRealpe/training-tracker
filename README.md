@@ -1,2 +1,2 @@
 # training-tracker
-Esta app tiene una estructura flexible y puede adaptarse a diferentes estilos de juego, objetivos del equipo y preferencias del entrenador, lo que lo hace una herramienta muy útil para la planificación de estrategias de entrenamiento y selección de equipos.
+This app has a flexible structure and can adapt to different styles of play, team goals and coach preferences, making it a very useful tool for planning training strategies and team selection.
