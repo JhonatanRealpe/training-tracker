@@ -1,0 +1,129 @@
+definitions:
+  entity.Player:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      position:
+        type: string
+      stats:
+        $ref: '#/definitions/entity.Stats'
+    type: object
+  entity.Players:
+    properties:
+      players:
+        items:
+          $ref: '#/definitions/entity.Player'
+        type: array
+    type: object
+  entity.Response:
+    properties:
+      data: {}
+      messagge:
+        type: string
+      status:
+        type: integer
+    type: object
+  entity.Speed:
+    properties:
+      distance:
+        type: string
+      time:
+        type: string
+    type: object
+  entity.Stats:
+    properties:
+      passes:
+        type: string
+      power:
+        type: string
+      speed:
+        $ref: '#/definitions/entity.Speed'
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
+info:
+  contact: {}
+  description: This API allows users to create new training sessions for football
+    teams, save player information, and retrieve team information. It provides endpoints
+    for managing trainings, teams, and players.
+  title: Football Training Tracker API
+  version: "1.0"
+paths:
+  /players:
+    get:
+      description: Obtiene todos los jugadores del sistema
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Player'
+            type: array
+      summary: Obtener jugadores
+      tags:
+      - Player
+    post:
+      consumes:
+      - application/json
+      description: Create a new player in the system
+      parameters:
+      - description: Players object
+        in: body
+        name: players
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Players'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entity.Response'
+      summary: Create a new player
+      tags:
+      - Player
+  /team:
+    get:
+      consumes:
+      - application/json
+      description: Get information about a specific team
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.Response'
+      summary: Retrieve team information
+      tags:
+      - Team
+  /training:
+    post:
+      consumes:
+      - application/json
+      description: Create a new training in the system
+      parameters:
+      - description: Players object
+        in: body
+        name: players
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Players'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entity.Response'
+      summary: Create a new training
+      tags:
+      - Training
+swagger: "2.0"
